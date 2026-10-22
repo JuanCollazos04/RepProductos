@@ -9,6 +9,8 @@ import com.example.demo.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class ProductServiceImpl implements ProductService {
@@ -32,7 +34,18 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void save(ProductRequestDto productRequestDto) {
+        ProductEntity product = new ProductEntity();
+        product.setSellerId(productRequestDto.getSellerId());
+        product.setBrandId(productRequestDto.getBrandId());
+        product.setName(productRequestDto.getName());
+        product.setDescription(productRequestDto.getDescription());
+        product.setPrice(productRequestDto.getPrice());
+        product.setStock(productRequestDto.getStock());
+        product.setActive(true);
+        product.setCreationDate(LocalDateTime.now());
+        product.setUpdateDate(LocalDateTime.now());
 
+        productRepository.save(product);
     }
 
     @Override

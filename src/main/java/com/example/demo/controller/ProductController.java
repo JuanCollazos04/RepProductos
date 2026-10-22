@@ -1,13 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.request.ProductRequestDto;
 import com.example.demo.dto.response.ProductResponseDto;
 import com.example.demo.service.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,4 +17,11 @@ public class ProductController {
     public ResponseEntity<ProductResponseDto> getById(@PathVariable("product_id") Long productId){
         return ResponseEntity.ok(productService.findById(productId));
     }
+
+    @PostMapping
+    public ResponseEntity<Void> save(@RequestBody ProductRequestDto productRequestDto){
+        productService.save(productRequestDto);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 }
