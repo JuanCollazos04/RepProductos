@@ -50,6 +50,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public void update(ProductRequestDto productRequestDto, Long productId) {
+        ProductEntity product = productRepository.findById(productId)
+                .orElseThrow(() -> new ProductNotFoundException(productId));
 
+        product.setSellerId(productRequestDto.getSellerId());
+        product.setBrandId(productRequestDto.getBrandId());
+        product.setName(productRequestDto.getName());
+        product.setDescription(productRequestDto.getDescription());
+        product.setPrice(productRequestDto.getPrice());
+        product.setStock(productRequestDto.getStock());
+        product.setUpdateDate(LocalDateTime.now());
     }
 }

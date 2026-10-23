@@ -24,4 +24,10 @@ public class ProductController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
+    @PutMapping(value = "/{productId}")
+    public ResponseEntity<Void> update(@PathVariable("productId") Long productId, @RequestBody ProductRequestDto productRequestDto){
+        productService.update(productRequestDto, productId);
+        return ResponseEntity.noContent().build();
+    }
+
 }
