@@ -14,27 +14,19 @@ import java.time.LocalDateTime;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "productos")
+@Table(name = "products")
 public class ProductEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "id_vendedor")
     private Long sellerId;
-    @Column(name = "id_marca")
     private Long brandId;
-    @Column(name = "nombre")
     private String name;
-    @Column(name = "descripcion")
     private String description;
-    @Column(name = "precio")
     private BigDecimal price;
     private Integer stock;
-    @Column(name = "esta_activo")
     private boolean isActive;
-    @Column(name = "fecha_creacion")
     private LocalDateTime creationDate;
-    @Column(name = "fecha_actualizacion")
     private LocalDateTime updateDate;
 
 
